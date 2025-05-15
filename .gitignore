@@ -1,0 +1,4 @@
+# Node modules and items not wanted to be tracked
+node_modules/
+.env
+
