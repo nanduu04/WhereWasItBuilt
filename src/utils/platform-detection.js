@@ -15,7 +15,7 @@ export function detectWordPress(doc = document) {
   const generatorMeta = doc.querySelector('meta[name="generator"]');
   if (generatorMeta && generatorMeta.content.toLowerCase().includes('wordpress')) {
     result.detected = true;
-    result.confidence += 0.8;
+    result.confidence += 0.9;
     result.methods.push('meta_generator');
     
     // Extract version if available
@@ -29,7 +29,7 @@ export function detectWordPress(doc = document) {
   const wpContentElements = doc.querySelectorAll('link[href*="wp-content"], script[src*="wp-content"]');
   if (wpContentElements.length > 0) {
     result.detected = true;
-    result.confidence += 0.7;
+    result.confidence += 0.8;
     result.methods.push('wp_content_url');
   }
 
@@ -37,7 +37,7 @@ export function detectWordPress(doc = document) {
   const wpIncludesElements = doc.querySelectorAll('script[src*="wp-includes"]');
   if (wpIncludesElements.length > 0) {
     result.detected = true;
-    result.confidence += 0.7;
+    result.confidence += 0.8;
     result.methods.push('wp_includes_url');
   }
 
@@ -45,7 +45,7 @@ export function detectWordPress(doc = document) {
   const wpJsonElements = doc.querySelectorAll('link[href*="wp-json"]');
   if (wpJsonElements.length > 0) {
     result.detected = true;
-    result.confidence += 0.7;
+    result.confidence += 0.8;
     result.methods.push('wp_json_endpoint');
   }
 
@@ -158,9 +158,19 @@ export function detectPlatform(doc = document) {
     .filter(([_, result]) => result.detected)
     .sort(([_, a], [__, b]) => b.confidence - a.confidence)[0];
 
+  // If no platform is detected, return unknown with 0 confidence
+  if (!detectedPlatform) {
+    return {
+      platform: 'unknown',
+      details: results,
+      confidence: 0
+    };
+  }
+
+  // Return the detected platform with its confidence
   return {
-    platform: detectedPlatform ? detectedPlatform[0] : 'unknown',
+    platform: detectedPlatform[0],
     details: results,
-    confidence: detectedPlatform ? detectedPlatform[1].confidence : 0
+    confidence: detectedPlatform[1].confidence
   };
 } 
