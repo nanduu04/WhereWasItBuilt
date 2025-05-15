@@ -58,6 +58,90 @@ export function detectWordPress(doc = document) {
 }
 
 /**
+ * Detects if a website is built with React
+ * @param {Document} doc - The document object to use (for testing)
+ * @returns {Object} Detection result with confidence score and version
+ */
+export function detectReact(doc = document) {
+  const result = {
+    detected: false,
+    confidence: 0,
+    version: null,
+    methods: []
+  };
+
+  let found = false;
+
+  // Check for React DevTools hook
+  if (typeof window !== 'undefined' && window.__REACT_DEVTOOLS_GLOBAL_HOOK__) {
+    found = true;
+    result.confidence += 0.9;
+    result.methods.push('react_devtools');
+    try {
+      const reactInstance = window.__REACT_DEVTOOLS_GLOBAL_HOOK__.renderers.get(1);
+      if (reactInstance && reactInstance.version) {
+        result.version = reactInstance.version;
+      }
+    } catch (e) {}
+  }
+
+  // Check for React root element
+  const reactRoot = doc.querySelector('[data-reactroot]');
+  if (reactRoot) {
+    found = true;
+    result.confidence += 0.8;
+    result.methods.push('react_root');
+  }
+
+  // Check for React in script sources
+  const reactScripts = doc.querySelectorAll('script[src*="react"]');
+  if (reactScripts && reactScripts.length > 0) {
+    found = true;
+    result.confidence += 0.7;
+    result.methods.push('react_scripts');
+    for (const script of reactScripts) {
+      const versionMatch = script.src.match(/react@?(\d+\.\d+\.\d+)/);
+      if (versionMatch && !result.version) {
+        result.version = versionMatch[1];
+      }
+    }
+  }
+
+  // Check for React-specific class names
+  const reactClasses = doc.querySelectorAll('[class*="react-"]');
+  if (reactClasses && reactClasses.length > 0) {
+    found = true;
+    result.confidence += 0.6;
+    result.methods.push('react_classes');
+  }
+
+  // Check for React-specific data attributes
+  const reactDataAttrs = doc.querySelectorAll('[data-reactid], [data-reactroot], [data-react-class]');
+  if (reactDataAttrs && reactDataAttrs.length > 0) {
+    found = true;
+    result.confidence += 0.7;
+    result.methods.push('react_data_attrs');
+  }
+
+  // Check for React-specific global variables
+  if (typeof window !== 'undefined' && (window.React || window.__REACT_DEVTOOLS_GLOBAL_HOOK__)) {
+    found = true;
+    result.confidence += 0.8;
+    result.methods.push('react_globals');
+  }
+
+  // Only set detected if at least one indicator was found
+  if (found) {
+    result.detected = true;
+    result.confidence = Math.min(result.confidence, 1);
+  } else {
+    result.confidence = 0;
+  }
+
+  return result;
+}
+
+/**
  * Detects the platform of the current website
  * @param {Document} doc - The document object to use (for testing)
  * @returns {Object} Platform detection results
@@ -65,6 +149,7 @@ export function detectWordPress(doc = document) {
 export function detectPlatform(doc = document) {
   const results = {
     wordpress: detectWordPress(doc),
+    react: detectReact(doc),
     // Other platform detections will be added here
   };
 
