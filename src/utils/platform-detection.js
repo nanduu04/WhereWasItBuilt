@@ -142,6 +142,68 @@ export function detectReact(doc = document) {
 }
 
 /**
+ * Detects if a website is built with Shopify
+ * @param {Document} doc - The document object to use (for testing)
+ * @returns {Object} Detection result with confidence score and version
+ */
+export function detectShopify(doc = document) {
+  const result = {
+    detected: false,
+    confidence: 0,
+    version: null,
+    methods: []
+  };
+
+  // Check for Shopify-specific meta tags
+  const shopifyMeta = doc.querySelector('meta[name="shopify-checkout-api-token"]');
+  if (shopifyMeta) {
+    result.detected = true;
+    result.confidence += 0.9;
+    result.methods.push('shopify_meta');
+  }
+
+  // Check for Shopify-specific JavaScript variables
+  if (typeof window !== 'undefined' && window.Shopify) {
+    result.detected = true;
+    result.confidence += 0.9;
+    result.methods.push('shopify_js');
+    if (window.Shopify.theme) {
+      result.version = window.Shopify.theme.version;
+    }
+  }
+
+  // Check for Shopify-specific CSS classes
+  const shopifyClasses = doc.querySelectorAll('[class*="shopify-"], [class*="shopify-section"]');
+  if (shopifyClasses && shopifyClasses.length > 0) {
+    result.detected = true;
+    result.confidence += 0.8;
+    result.methods.push('shopify_classes');
+  }
+
+  // Check for Shopify-specific URLs
+  const shopifyUrls = doc.querySelectorAll('link[href*="shopify"], script[src*="shopify"]');
+  if (shopifyUrls && shopifyUrls.length > 0) {
+    result.detected = true;
+    result.confidence += 0.8;
+    result.methods.push('shopify_urls');
+  }
+
+  // Check for Shopify-specific cookies
+  if (typeof document !== 'undefined' && document.cookie.includes('_shopify_')) {
+    result.detected = true;
+    result.confidence += 0.7;
+    result.methods.push('shopify_cookies');
+  }
+
+  // Normalize confidence score
+  if (result.detected) {
+    result.confidence = Math.min(result.confidence, 1);
+  }
+
+  return result;
+}
+
+/**
  * Detects the platform of the current website
  * @param {Document} doc - The document object to use (for testing)
  * @returns {Object} Platform detection results
@@ -150,7 +212,7 @@ export function detectPlatform(doc = document) {
   const results = {
     wordpress: detectWordPress(doc),
     react: detectReact(doc),
-    // Other platform detections will be added here
+    shopify: detectShopify(doc)
   };
 
   // Find the platform with highest confidence

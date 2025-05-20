@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KundliCast - Your Vedic Birth Chart in Your Pocket</title>
+    <meta name="description" content="KundliCast - Accurate Kundli calculations and personalized insights in seconds">
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom Tailwind config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#663399',
+                        secondary: '#1E88E5',
+                        accent: '#FFD700',
+                        background: '#FAFAFA',
+                        textDark: '#333333'
+                    },
+                }
+            }
+        }
+    </script>
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-background text-textDark font-sans">
+    <!-- Header -->
+    <header class="sticky top-0 bg-white shadow-md z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="#" class="flex items-center text-primary font-bold text-2xl">
+                        <i class="fas fa-star text-accent mr-2"></i>
+                        KundliCast
+                    </a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-textDark hover:text-primary focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-textDark hover:text-primary transition">Home</a>
+                    <a href="#features" class="text-textDark hover:text-primary transition">Features</a>
+                    <a href="#how-it-works" class="text-textDark hover:text-primary transition">How It Works</a>
+                    <a href="#pricing" class="text-textDark hover:text-primary transition">Pricing</a>
+                    <a href="#download" class="text-textDark hover:text-primary transition">Download</a>
+                </nav>
+            </div>
+            <!-- Mobile Navigation -->
+            <nav id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="#home" class="text-textDark hover:text-primary transition">Home</a>
+                    <a href="#features" class="text-textDark hover:text-primary transition">Features</a>
+                    <a href="#how-it-works" class="text-textDark hover:text-primary transition">How It Works</a>
+                    <a href="#pricing" class="text-textDark hover:text-primary transition">Pricing</a>
+                    <a href="#download" class="text-textDark hover:text-primary transition">Download</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="py-20 bg-gradient-to-br from-primary/10 to-secondary/10">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold text-primary mb-4">Your Vedic Birth Chart in Your Pocket</h1>
+                    <p class="text-xl mb-8">Accurate Kundli calculations and personalized insights in seconds</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#download" class="bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-6 rounded-lg transition transform hover:scale-105 flex items-center justify-center">
+                            <i class="fas fa-download mr-2"></i> Download App
+                        </a>
+                        <a href="#demo" class="border-2 border-primary text-primary hover:bg-primary/10 font-semibold py-3 px-6 rounded-lg transition flex items-center justify-center">
+                            <i class="fas fa-play-circle mr-2"></i> Try Free Demo
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="https://placehold.co/600x400/e2e8f0/1E88E5?text=KundliCast+App" alt="KundliCast App Screenshot" class="rounded-xl shadow-lg max-w-full mx-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Powerful Features</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Discover why thousands of users trust KundliCast for their astrological guidance</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white p-8 rounded-lg shadow-md transition transform hover:scale-105">
+                    <div class="text-accent text-4xl mb-4">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Instant Kundli Generation</h3>
+                    <p class="text-gray-600">Generate accurate Vedic birth charts in seconds. Our algorithms ensure precision and reliability.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-white p-8 rounded-lg shadow-md transition transform hover:scale-105">
+                    <div class="text-accent text-4xl mb-4">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Personalized Daily Insights</h3>
+                    <p class="text-gray-600">Receive custom astrological guidance every day based on your unique birth chart and planetary positions.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-white p-8 rounded-lg shadow-md transition transform hover:scale-105">
+                    <div class="text-accent text-4xl mb-4">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Compatibility Analysis</h3>
+                    <p class="text-gray-600">Discover how well you match with others through our detailed compatibility reports and insights.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-20 bg-gradient-to-br from-secondary/10 to-primary/10">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">How It Works</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Three simple steps to unlock your astrological insights</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Step 1 -->
+                <div class="text-center">
+                    <div class="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+                        <span class="text-primary text-2xl font-bold">1</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Enter Birth Details</h3>
+                    <p class="text-gray-600">Provide your date, time, and place of birth for accurate calculations.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="text-center">
+                    <div class="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+                        <span class="text-primary text-2xl font-bold">2</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Our Algorithm Calculates Your Kundli</h3>
+                    <p class="text-gray-600">Advanced celestial algorithms map your unique astrological profile.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="text-center">
+                    <div class="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+                        <span class="text-primary text-2xl font-bold">3</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Get Personalized Insights</h3>
+                    <p class="text-gray-600">Receive detailed readings and guidance tailored specifically to you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">What Our Users Say</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Trusted by thousands for accurate astrological guidance</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="flex text-accent mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 mb-4">"KundliCast has transformed how I understand my life's path. The predictions are incredibly accurate, and the daily insights help me navigate each day with confidence."</p>
+                    <div class="font-bold">Priya S.</div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="flex text-accent mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-600 mb-4">"I was skeptical at first, but the compatibility analysis was eye-opening. It helped me understand my relationship dynamics in a whole new light."</p>
+                    <div class="font-bold">Rahul M.</div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="flex text-accent mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 mb-4">"The level of detail in my birth chart analysis was impressive. The app is intuitive and provides insights that other astrology apps simply don't offer."</p>
+                    <div class="font-bold">Amit K.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-gradient-to-br from-primary/10 to-secondary/10">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Simple Pricing</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Choose the plan that works best for you</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Free Plan -->
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-bold mb-2">Free</h3>
+                    <div class="text-4xl font-bold mb-6">$0</div>
+                    <ul class="mb-8 space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Basic Birth Chart</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Daily Horoscope</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Limited Predictions</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-times text-red-500 mt-1 mr-2"></i>
+                            <span class="text-gray-400">Detailed Analysis</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-times text-red-500 mt-1 mr-2"></i>
+                            <span class="text-gray-400">Compatibility Reports</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-times text-red-500 mt-1 mr-2"></i>
+                            <span class="text-gray-400">Ad-Free Experience</span>
+                        </li>
+                    </ul>
+                    <a href="#download" class="block text-center bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-6 rounded-lg transition">Get Started</a>
+                </div>
+
+                <!-- Premium Plan -->
+                <div class="bg-white p-8 rounded-lg shadow-md border-2 border-primary">
+                    <div class="inline-block bg-primary text-white px-3 py-1 rounded-full text-sm font-semibold mb-2">RECOMMENDED</div>
+                    <h3 class="text-2xl font-bold mb-2">Premium</h3>
+                    <div class="text-4xl font-bold mb-6">$4.99<span class="text-lg font-normal">/month</span></div>
+                    <ul class="mb-8 space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Comprehensive Birth Chart</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Personalized Daily Insights</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Extended Predictions</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>In-depth Planetary Analysis</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Unlimited Compatibility Reports</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Ad-Free Experience</span>
+                        </li>
+                    </ul>
+                    <a href="#download" class="block text-center bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-6 rounded-lg transition transform hover:scale-105">Get Premium</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Download KundliCast</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Get your personal astrology companion today</p>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-center justify-between max-w-5xl mx-auto">
+                <div class="md:w-1/2 mb-10 md:mb-0 flex justify-center">
+                    <img src="https://placehold.co/300x600/e2e8f0/1E88E5?text=App+Screenshot" alt="KundliCast App Screenshot" class="max-h-[600px] rounded-3xl shadow-lg">
+                </div>
+                <div class="md:w-1/2 text-center md:text-left">
+                    <h3 class="text-2xl font-bold mb-6">Download Now</h3>
+                    <p class="text-gray-600 mb-8">Available on iOS and Android. Download the app and start your astrological journey today.</p>
+                    
+                    <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4 mb-8">
+                        <a href="#" class="bg-black text-white py-3 px-6 rounded-lg flex items-center justify-center hover:bg-gray-800 transition">
+                            <i class="fab fa-apple text-2xl mr-2"></i>
+                            <div class="text-left">
+                                <div class="text-xs">Download on the</div>
+                                <div class="font-semibold">App Store</div>
+                            </div>
+                        </a>
+                        <a href="#" class="bg-black text-white py-3 px-6 rounded-lg flex items-center justify-center hover:bg-gray-800 transition">
+                            <i class="fab fa-google-play text-2xl mr-2"></i>
+                            <div class="text-left">
+                                <div class="text-xs">Get it on</div>
+                                <div class="font-semibold">Google Play</div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="flex justify-center md:justify-start">
+                        <img src="https://placehold.co/150x150/e2e8f0/1E88E5?text=QR+Code" alt="Download QR Code" class="w-32 h-32">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Logo and Brief -->
+                <div class="col-span-1 md:col-span-1">
+                    <a href="#" class="flex items-center text-white font-bold text-2xl mb-4">
+                        <i class="fas fa-star text-accent mr-2"></i>
+                        KundliCast
+                    </a>
+                    <p class="text-gray-400 mb-4">Your personal Vedic astrology companion</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-white transition">Features</a></li>
+                        <li><a href="#how-it-works" class="text-gray-400 hover:text-white transition">How It Works</a></li>
+                        <li><a href="#pricing" class="text-gray-400 hover:text-white transition">Pricing</a></li>
+                        <li><a href="#download" class="text-gray-400 hover:text-white transition">Download</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Cookie Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">GDPR Compliance</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope text-gray-400 mt-1 mr-2"></i>
+                            <span class="text-gray-400">support@kundlicast.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone text-gray-400 mt-1 mr-2"></i>
+                            <span class="text-gray-400">+1 (555) 123-4567</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-gray-400 mt-1 mr-2"></i>
+                            <span class="text-gray-400">Bangalore, India</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="border-gray-800 my-8">
+
+            <div class="text-center text-gray-500">
+                <p>&copy; 2025 KundliCast. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
